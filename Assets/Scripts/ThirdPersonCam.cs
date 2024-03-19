@@ -5,6 +5,8 @@ using UnityEngine;
 public class ThirdPersonCam : MonoBehaviour
 {
     [Header("References")]
+
+    public GameObject crosshair;
     public Transform orientation;
     public Transform player;
     public Transform playerObj;
@@ -33,6 +35,7 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        crosshair.SetActive(false);
     }
 
     private void Update()
@@ -76,7 +79,6 @@ public class ThirdPersonCam : MonoBehaviour
         {
             Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
             orientation.forward = dirToCombatLookAt.normalized;
-
             playerObj.forward = dirToCombatLookAt.normalized;
 
             if (!isKeyPressed) SwitchCameraStyle(CameraStyle.Basic);
@@ -89,8 +91,14 @@ public class ThirdPersonCam : MonoBehaviour
         thirdPersonCam.SetActive(false);
         topDownCam.SetActive(false);
 
-        if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
-        if (newStyle == CameraStyle.Combat) combatCam.SetActive(true);
+        if (newStyle == CameraStyle.Basic) {
+            thirdPersonCam.SetActive(true);
+            crosshair.SetActive(false);
+        }
+        if (newStyle == CameraStyle.Combat) {
+            combatCam.SetActive(true);
+            crosshair.SetActive(true);
+        }
         if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);
 
         currentStyle = newStyle;
