@@ -13,6 +13,6 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        //gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward);
+        
     }
 }
