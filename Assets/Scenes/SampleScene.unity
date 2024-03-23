@@ -456,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58362317}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.067088515, y: -0.0022608342, z: -0.0004060194, w: 0.9977444}
+  m_LocalRotation: {x: -0.06696905, y: -0.0022608668, z: -0.00040574573, w: 0.9977524}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -929,7 +929,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1221111, y: 7.755386e-18, z: 2.8782339e-18, w: 0.99251646}
+  m_LocalRotation: {x: -0.121992245, y: 0.000000016247307, z: 0.0000000019969604,
+    w: 0.99253106}
   m_LocalPosition: {x: -0.08, y: -1, z: -2.42}
   m_LocalScale: {x: 1, y: 1, z: 0.92349994}
   m_ConstrainProportionsScale: 0
@@ -1164,7 +1165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373482385}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000004660248, y: 0.80401695, z: 0.000000009170014, w: 0.5946064}
+  m_LocalRotation: {x: 0.0000000061354566, y: 0.8040865, z: -0.000000005429564, w: 0.5945124}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1676,8 +1677,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1177805900}
-  m_Follow: {fileID: 1177805900}
+  m_LookAt: {fileID: 847604013}
+  m_Follow: {fileID: 847604013}
   m_CommonLens: 1
   m_Lens:
     FieldOfView: 45
@@ -1701,8 +1702,8 @@ MonoBehaviour:
     Value: 0.5
     m_SpeedMode: 0
     m_MaxSpeed: 3
-    m_AccelTime: 0.5
-    m_DecelTime: 0.25
+    m_AccelTime: 0.05
+    m_DecelTime: 0.025
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
@@ -1725,8 +1726,8 @@ MonoBehaviour:
     Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 300
-    m_AccelTime: 0.5
-    m_DecelTime: 0.25
+    m_AccelTime: 0.05
+    m_DecelTime: 0.025
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -1773,7 +1774,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000000012347698, y: -0.70710874, z: -0.0000000013114807,
     w: 0.70710486}
-  m_LocalPosition: {x: -0.08, y: 19.610622, z: -1.976}
+  m_LocalPosition: {x: -0.08, y: 19.61, z: -1.976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1984,7 +1985,7 @@ Transform:
   m_GameObject: {fileID: 847604012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.08, y: -0.39, z: 0.024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2157,7 +2158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002398952}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000045005875, y: 0.80401695, z: 0.000000008954123, w: 0.5946064}
+  m_LocalRotation: {x: -0.0000000040879162, y: 0.8040865, z: 0.000000008397693, w: 0.5945124}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2292,12 +2293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1177805900 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1186232250512505098, guid: 5848166cbe0b4d444a747e5052ba737b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1318427983252930963}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1194503868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,7 +2432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194507057}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000042837116, y: 0.80401695, z: 0.000000008660867, w: 0.5946064}
+  m_LocalRotation: {x: 0.000000006141487, y: 0.8040865, z: -0.0000000054377196, w: 0.5945124}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3026,7 +3021,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 11
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1177805900}
+  m_LookAt: {fileID: 847604013}
   m_Follow: {fileID: 1962949820}
   m_CommonLens: 1
   m_Lens:
@@ -3395,7 +3390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798788915}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.067088515, y: -0.0022608342, z: -0.0004060194, w: 0.9977444}
+  m_LocalRotation: {x: -0.06696905, y: -0.0022608668, z: -0.00040574573, w: 0.9977524}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3553,7 +3548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912640850}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.067088515, y: -0.0022608342, z: -0.0004060194, w: 0.9977444}
+  m_LocalRotation: {x: -0.06696908, y: -0.0022609034, z: -0.0004057524, w: 0.9977524}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3576,7 +3571,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2081362034}
-  - component: {fileID: 2081362036}
   - component: {fileID: 2081362033}
   - component: {fileID: 2081362035}
   - component: {fileID: 2081362037}
@@ -3628,23 +3622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e11b706edc1a14da7c3d9c898b33ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2081362036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2081362032}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 4c7ec96c3d2f27143a41aeb341e069b7, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 100
 --- !u!114 &2081362037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3668,7 +3645,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081362032}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
