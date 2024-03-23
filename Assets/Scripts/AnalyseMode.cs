@@ -12,7 +12,7 @@ public class AnalyseMode : MonoBehaviour
 
     public GameObject processingHandler;
 
-    private bool modeActive = false;
+    public bool modeActive = false;
 
     void Update()
     {
