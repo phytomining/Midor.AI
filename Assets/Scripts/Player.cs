@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        if (gameHandler.GetComponent<AnalyseMode>().modeActive && Input.GetMouseButtonDown(0)){
+        if (gameHandler.GetComponent<UI>().modeActive && Input.GetMouseButtonDown(0)){
             GameObject objectHit = PreformRaycast();
             if(objectHit != null && objectHit.name.Contains("Midori")){
                 Debug.Log("Found A MIDORI");
