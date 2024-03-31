@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Rendering.Universal;
@@ -7,27 +8,35 @@ using System;
 public class UI : MonoBehaviour
 {
     public float slowTimeScale = 0.5f; 
-
-    public PostProcessProfile profile;
-
-    public GameObject processingHandler;
-
     public bool modeActive = false;
     public float lerpSpeed = 15f;
     public GameObject player;
     public GameObject midori;
-    public Canvas canvas;
     public RawImage healthBarFill;
     public RawImage healthBarFillBg;
 
     public float health = 100f, maxHealth = 100f;
 
-    public float realWidth;
-
-    private Texture2D copiedTexture;
-
     public Text healthText;
+    public Color yellow = Color.yellow, red = Color.red, green;
+    public float duration = 0.5f;
 
+    private Color initialColor;
+    private float timer = 0f;
+    public int zone = 2;
+    IEnumerator ChangeColorOverTime(Color targetColor)
+    {
+        while (timer < duration)
+        {
+            float t = timer / duration;
+            Color lerpedColor = Color.Lerp(initialColor, targetColor, t);
+            healthBarFill.color = lerpedColor;
+            timer += Time.deltaTime;
+            yield return null; 
+        }
+        healthBarFill.color = targetColor;
+        timer = 0f;
+    }
     void changeAlpha(RawImage raw, float alphaValue)
     {
         Color color = raw.color;
@@ -85,6 +94,17 @@ public class UI : MonoBehaviour
         UpdateHealthText(currentHealth, maxHealth);
         ChangeScale(new Vector3(6f * healthPercentage, 1.05f,1f));
         CropImage(healthPercentage);
+
+        if(healthPercentage >= 0.6 && zone != 2){
+            ChangeColorOverTime(green);
+            zone = 2;
+        }else if(healthPercentage >= 0.2 && healthPercentage < 0.6 && zone != 1){
+            ChangeColorOverTime(yellow);
+            zone = 1;
+        }else if(zone != 0 && healthPercentage < 0.2){
+            ChangeColorOverTime(red);
+            zone = 0;
+        }
     }
 
     void Update()

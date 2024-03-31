@@ -10,6 +10,7 @@ public class RelativeMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
     void Update()
@@ -24,7 +25,7 @@ public class RelativeMovement : MonoBehaviour
 
         forwardDirection.Normalize();
         rightDirection.Normalize();
-
+        
         // Move the object based on WASD input
         Vector3 movement = new Vector3(0, rb.velocity.y * 0.5f, 0);
         if (Input.GetKey(KeyCode.W))
