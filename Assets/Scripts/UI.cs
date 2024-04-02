@@ -17,26 +17,43 @@ public class UI : MonoBehaviour
 
     public float health = 100f, maxHealth = 100f;
 
-    public Text healthText;
+    public Text healthText, cpuText;
     public Color yellow = Color.yellow, red = Color.red, green;
-    public float duration = 0.5f;
+    public float duration = 0.2f;
 
     private Color initialColor;
-    private float timer = 0f;
-    public int zone = 2;
-    IEnumerator ChangeColorOverTime(Color targetColor)
+    private float timer = 0f, imgtimer = 0f;
+    public int zone = 0;
+    IEnumerator ChangeColorOverTime(Text text, Color targetColor)
     {
         while (timer < duration)
         {
             float t = timer / duration;
             Color lerpedColor = Color.Lerp(initialColor, targetColor, t);
-            healthBarFill.color = lerpedColor;
+            text.color = lerpedColor;
             timer += Time.deltaTime;
+            Debug.Log("Changing color to: " + lerpedColor);
             yield return null; 
         }
-        healthBarFill.color = targetColor;
+        text.color = targetColor;
         timer = 0f;
     }
+
+    IEnumerator ChangeColorOverTimeImage(RawImage img, Color targetColor)
+    {
+        while (imgtimer < duration)
+        {
+            float t = imgtimer / duration;
+            Color lerpedColor = Color.Lerp(initialColor, targetColor, t);
+            img.color = lerpedColor;
+            imgtimer += Time.deltaTime;
+            Debug.Log("Changing color to: (IMG)" + lerpedColor);
+            yield return null; 
+        }
+        //img.color = targetColor;
+        imgtimer = 0f;
+    }
+
     void changeAlpha(RawImage raw, float alphaValue)
     {
         Color color = raw.color;
@@ -54,7 +71,6 @@ public class UI : MonoBehaviour
     void CropImage(float hpPercent)
     {
         float width = hpPercent;
-        Debug.Log("Width:" + width);
         Rect imageUVRect = new Rect(
             0f,
             0f,
@@ -79,7 +95,6 @@ public class UI : MonoBehaviour
         health = midori.GetComponent<Midori>().health;
         maxHealth = midori.GetComponent<Midori>().maxHealth;
         realWidth = healthBarFill.rectTransform.sizeDelta.x;
-        Debug.Log("The real width: " + realWidth);
         UpdateHealth(health);
     }
 
@@ -95,14 +110,23 @@ public class UI : MonoBehaviour
         ChangeScale(new Vector3(6f * healthPercentage, 1.05f,1f));
         CropImage(healthPercentage);
 
-        if(healthPercentage >= 0.6 && zone != 2){
-            ChangeColorOverTime(green);
+        Debug.Log(zone + " " + healthPercentage);
+
+        if(healthPercentage >= 0.6f && zone != 2){
+            Debug.Log("Test " + healthPercentage);
+            initialColor = healthText.color;
+            StartCoroutine(ChangeColorOverTime(healthText, green));
+            StartCoroutine(ChangeColorOverTimeImage(healthBarFill, green));
             zone = 2;
-        }else if(healthPercentage >= 0.2 && healthPercentage < 0.6 && zone != 1){
-            ChangeColorOverTime(yellow);
+        }else if(healthPercentage >= 0.2f && healthPercentage < 0.6f && zone != 1){
+            initialColor = healthText.color;
+            StartCoroutine(ChangeColorOverTime(healthText, yellow));
+            StartCoroutine(ChangeColorOverTimeImage(healthBarFill, yellow));
             zone = 1;
         }else if(zone != 0 && healthPercentage < 0.2){
-            ChangeColorOverTime(red);
+            initialColor = healthText.color;
+            StartCoroutine(ChangeColorOverTime(healthText, red));
+            StartCoroutine(ChangeColorOverTimeImage(healthBarFill, red));
             zone = 0;
         }
     }
@@ -130,6 +154,6 @@ public class UI : MonoBehaviour
             changeAlpha(healthBarFillBg,(float)Math.Round(Mathf.Lerp(healthBarFill.color.a, 0f, lerpSpeed * Time.deltaTime),4));
             changeAlphaText(healthText,(float)Math.Round(Mathf.Lerp(healthBarFill.color.a, 0f, lerpSpeed * Time.deltaTime),4));
         }   
-        if(Input.GetKeyDown(KeyCode.T)) midori.GetComponent<Midori>().damage(0.1f);
+        if(Input.GetKey(KeyCode.T)) midori.GetComponent<Midori>().damage(0.1f);
     }
 }

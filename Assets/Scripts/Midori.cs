@@ -7,6 +7,8 @@ public class Midori : MonoBehaviour
     public float maxHealth = 100f;
     public float health = 100f;
     public float speed = 3f;
+    public float cpu = 0;
+    public float cpucap = 0;
 
     public UI uiobj;
 

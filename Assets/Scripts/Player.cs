@@ -13,8 +13,52 @@ public class Player : MonoBehaviour
     public GameObject cameraMain;
 
     public GameObject midori;
-    public UI interfaces;
 
+    public Midori currentMidori;
+    public UI interfaces;
+    public float movementSpeed = 10.0f;
+    public GameObject orientation;
+    public Player player;
+    public GameObject playerObj;
+    IEnumerator MoveCamera(GameObject midoriObj)
+    {
+        Transform originalFollow = virtualCamera.Follow;
+        Transform originalLookAt = virtualCamera.LookAt;
+
+        virtualCamera.Follow = null;
+        virtualCamera.LookAt = null;
+
+        Vector3 targetPosition = new Vector3(midori.transform.position.x+0.08f, midori.transform.position.y+1.5f, midori.transform.position.z-0.02f);
+
+        //Get beginning stats
+        float startTime = Time.time;
+        Vector3 startPosition = virtualCamera.transform.position;
+        float distance = Vector3.Distance(startPosition, targetPosition);
+        float duration = distance / movementSpeed;
+
+        while (Time.time - startTime < duration)
+        {
+            targetPosition = new Vector3(midori.transform.position.x+0.08f, midori.transform.position.y+1.5f, midori.transform.position.z-0.02f);
+            float t = (Time.time - startTime) / duration;
+            virtualCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            yield return null;
+        }
+
+        //Midori gurinuuuu here!!! This Ensures camera reaches the exact target position + make sure camera arrives... ;-;
+        Camera.main.transform.position = targetPosition;
+        this.gameObject.transform.position = targetPosition;
+        virtualCamera.Follow = orientation.transform;
+        virtualCamera.LookAt = orientation.transform;
+        virtualCameraMain.Follow = midori.transform;
+        virtualCameraMain.LookAt = orientation.transform;
+        
+        midori.transform.SetParent(this.gameObject.transform);
+        midori.GetComponent<Midori>().selected = true;
+        interfaces.UpdateHealth(midori.GetComponent<Midori>().health);
+        interfaces.midori = midori;
+        currentMidori = midori.GetComponent<Midori>();
+        cameraMain.GetComponent<Camera>().GetComponent<ThirdPersonCam>().playerObj = midori.transform;
+    }
 
     void Awake(){
 
@@ -22,6 +66,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Debug.Log("Meow meow starting");
+        currentMidori = midori.GetComponent<Midori>();
     }
 
     
@@ -31,18 +76,11 @@ public class Player : MonoBehaviour
         if (gameHandler.GetComponent<UI>().modeActive && Input.GetMouseButtonDown(0)){
             GameObject objectHit = PreformRaycast();
             if(objectHit != null && objectHit.name.Contains("Midori")){
-                Debug.Log("Found A MIDORI");
-                Debug.Log("Attempting to swap midoris");
                 midori.transform.SetParent(null);
                 midori.GetComponent<Midori>().selected = false;
                 midori = objectHit;
-                cameraMain.GetComponent<Camera>().GetComponent<ThirdPersonCam>().playerObj = midori.transform;
-                virtualCameraMain.GetComponent<CinemachineFreeLook>().Follow = midori.transform;
-                this.gameObject.transform.position = new Vector3(midori.transform.position.x+0.08f, midori.transform.position.y+1.5f, midori.transform.position.z-0.02f);
-                midori.transform.SetParent(this.gameObject.transform);
-                midori.GetComponent<Midori>().selected = true;
-                interfaces.UpdateHealth(midori.GetComponent<Midori>().health);
-                interfaces.midori = midori;
+                StartCoroutine(MoveCamera(midori));
+                
             }
         }
         
